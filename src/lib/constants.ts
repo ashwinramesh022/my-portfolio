@@ -7,11 +7,11 @@ export const siteConfig = {
   title: "Ashwin Ramesh Kannan — Software Engineer",
   description:
     "Fast learner, versatile, creative technologist. Software engineer building meaningful products with modern technologies.",
-  url: process.env.NEXT_PUBLIC_SITE_URL || "https://ashwin.dev",
+  url: process.env.NEXT_PUBLIC_SITE_URL || "https://ashwinrameshkannan.com",
   locale: "en_US",
   author: {
     name: "Ashwin Ramesh Kannan",
-    email: "hello@ashwin.dev",
+    email: "hello@ashwinrameshkannan.com",
     twitter: "@ashwinrk",
   },
   links: {
