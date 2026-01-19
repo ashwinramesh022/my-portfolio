@@ -1,0 +1,86 @@
+---
+title: "Building With AI Assistants: A Developer's Perspective"
+description: "How I've integrated AI tools into my development workflow, what works, what doesn't, and why the future isn't about replacement—it's about amplification."
+date: "2026-01-15"
+tags: ["ai", "productivity", "engineering"]
+draft: false
+---
+
+The conversation around AI in software development often gets framed as a binary: either AI will replace developers, or it's just a fancy autocomplete. Having spent the past few months deeply integrating AI assistants into my workflow, I've found the reality to be far more nuanced—and far more interesting.
+
+## The Augmentation Mindset
+
+The most productive framing I've found is thinking of AI as a collaborator with a very specific skill set. It's exceptional at:
+
+- **Pattern recognition**: Spotting common code patterns and suggesting implementations
+- **Translation**: Converting between formats, languages, and paradigms
+- **Exploration**: Quickly generating multiple approaches to a problem
+- **Documentation**: Explaining code and generating docs from context
+
+It's notably less good at:
+
+- Understanding business context and tradeoffs
+- Making architectural decisions that consider long-term maintenance
+- Debugging issues that require deep domain knowledge
+- Knowing when *not* to build something
+
+## My Current Workflow
+
+Here's how AI fits into my daily development:
+
+### Morning: Planning & Research
+
+I start most features by having a conversation with an AI assistant about the problem space. Not to get *the* answer, but to explore the solution landscape. What patterns exist? What are the tradeoffs? What am I not considering?
+
+```typescript
+// Example prompt pattern I use for exploration:
+// "I need to implement [X]. My constraints are [Y].
+// What are 3-4 different approaches, with tradeoffs?"
+```
+
+This conversation often surfaces considerations I wouldn't have thought of on my own.
+
+### Midday: Implementation
+
+During implementation, I use AI for:
+
+1. **Boilerplate generation**: Setting up test files, component scaffolds, API routes
+2. **Rubber ducking**: Explaining my approach and getting feedback
+3. **Quick lookups**: "How does this library handle X?" is faster than docs sometimes
+
+What I *don't* do: blindly accept generated code. Every suggestion gets reviewed, understood, and often modified.
+
+### Evening: Review & Documentation
+
+AI excels at helping write documentation, commit messages, and PR descriptions. It can see patterns in my changes that I might miss after hours of deep work.
+
+## The Pitfalls to Avoid
+
+<Callout type="warning" title="Common Traps">
+These mistakes are easy to make when you first start using AI assistants heavily.
+</Callout>
+
+**Over-delegation**: The temptation to let AI handle everything leads to code you don't understand. When bugs appear—and they will—you'll be lost.
+
+**Context collapse**: AI doesn't know your codebase's history, your team's conventions, or why that weird workaround exists. Always provide context, and always sanity-check against your domain knowledge.
+
+**Speed over quality**: AI makes it easy to generate *a lot* of code quickly. But more code isn't better code. Sometimes the best solution is deleting code, and AI will rarely suggest that.
+
+## What I'm Optimistic About
+
+The most exciting aspect isn't the current capabilities—it's the trajectory. I'm particularly interested in:
+
+- **Codebase-aware assistants**: Tools that understand your entire project, not just the current file
+- **Test generation**: AI that can reason about edge cases and generate meaningful tests
+- **Code review assistance**: Catching issues before they become bugs
+
+## Conclusion
+
+AI assistants are tools, and like any tool, their value depends entirely on how you use them. The developers who will thrive aren't those who resist AI or those who over-rely on it—they're the ones who learn to collaborate with it effectively.
+
+The skill isn't "knowing how to code"—it's knowing *what* to build and *why*. AI can help with the how; the what and why remain deeply human.
+
+---
+
+*What's your experience been with AI in development? I'd love to hear different perspectives—reach out on [Twitter](https://twitter.com/ashwinrk) or [email](mailto:hello@ashwin.dev).*
+
