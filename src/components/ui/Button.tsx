@@ -7,6 +7,7 @@ interface ButtonProps extends React.ButtonHTMLAttributes<HTMLButtonElement> {
   size?: "sm" | "md" | "lg";
   asChild?: boolean;
   href?: string;
+  cursorLabel?: string;
 }
 
 export const Button = forwardRef<HTMLButtonElement, ButtonProps>(
@@ -16,6 +17,7 @@ export const Button = forwardRef<HTMLButtonElement, ButtonProps>(
       variant = "primary",
       size = "md",
       href,
+      cursorLabel,
       children,
       ...props
     },
@@ -45,14 +47,25 @@ export const Button = forwardRef<HTMLButtonElement, ButtonProps>(
 
     if (href) {
       return (
-        <Link href={href} className={classes}>
+        <Link 
+          href={href} 
+          className={classes}
+          data-cursor="link"
+          data-cursor-label={cursorLabel}
+        >
           {children}
         </Link>
       );
     }
 
     return (
-      <button ref={ref} className={classes} {...props}>
+      <button 
+        ref={ref} 
+        className={classes} 
+        data-cursor="link"
+        data-cursor-label={cursorLabel}
+        {...props}
+      >
         {children}
       </button>
     );

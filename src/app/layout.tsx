@@ -2,6 +2,7 @@ import type { Metadata, Viewport } from "next";
 import { geistSans, geistMono } from "@/lib/fonts";
 import { siteConfig } from "@/lib/constants";
 import { Navigation, Footer, SmoothScroll, PageTransition } from "@/components/layout";
+import { CursorFollower } from "@/components/cursor";
 import "./globals.css";
 
 export const metadata: Metadata = {
@@ -75,6 +76,7 @@ export default function RootLayout({
   return (
     <html lang="en" className={`${geistSans.variable} ${geistMono.variable}`}>
       <body className="min-h-screen flex flex-col">
+        <CursorFollower />
         <SmoothScroll>
           <Navigation />
           <main className="flex-1 pt-16 md:pt-20">

@@ -82,6 +82,8 @@ export function FeaturedChapters({ chapters }: FeaturedChaptersProps) {
           <Link
             href="/chapters"
             className="group inline-flex items-center gap-3 px-6 py-3 rounded-full border border-[var(--color-border-subtle)] text-body text-[var(--color-text-muted)] hover:text-[var(--color-text-primary)] hover:border-[var(--color-border)] transition-all duration-300"
+            data-cursor="link"
+            data-cursor-label="View"
           >
             View all chapters
             <motion.svg
@@ -119,7 +121,7 @@ function ChapterCard({ chapter, index }: { chapter: Chapter; index: number }) {
       ref={cardRef}
       style={{ opacity, y, scale }}
     >
-      <Link href={`/chapters/${chapter.slug}`} className="group block relative">
+      <Link href={`/chapters/${chapter.slug}`} className="group block relative" data-cursor="project" data-cursor-label="Explore">
         <div className="relative bg-[var(--color-bg-elevated)] border border-[var(--color-border-subtle)] rounded-2xl p-8 md:p-10 lg:p-12 overflow-hidden transition-all duration-500 hover:border-[var(--color-border)] group-hover:bg-[var(--color-bg-surface)]">
           {/* Hover gradient spotlight */}
           <div 
