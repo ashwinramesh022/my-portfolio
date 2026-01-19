@@ -5,27 +5,92 @@
    ============================================ */
 
 :root {
+  /* ============================================
+     ORIGINAL COLOR PALETTE - BACKUP
+     Uncomment this block and delete the new palette below to revert
+     ============================================
+     --color-bg: #0a0a0c;
+     --color-bg-elevated: #111114;
+     --color-bg-surface: #18181c;
+     --color-bg-hover: #1f1f24;
+     --color-text-primary: #f4f4f5;
+     --color-text-secondary: #a1a1aa;
+     --color-text-muted: #71717a;
+     --color-text-subtle: #52525b;
+     --color-accent: #e4e4e7;
+     --color-accent-muted: #a1a1aa;
+     --color-accent-glow: rgba(228, 228, 231, 0.15);
+     --color-border: #27272a;
+     --color-border-subtle: #1f1f23;
+     --color-highlight: #f59e0b;
+     --color-highlight-muted: rgba(245, 158, 11, 0.2);
+     ============================================ */
+
   /* Color Palette - Dark Mode Default (Cinematic) */
   --color-bg: #0a0a0c;
   --color-bg-elevated: #111114;
   --color-bg-surface: #18181c;
   --color-bg-hover: #1f1f24;
-  
+
+  /* Tinted section backgrounds (subtle variation) */
+  --color-bg-navy: #0c0d14;
+  --color-bg-wine: #0d0a0c;
+  --color-bg-forest: #0a0c0b;
+
   --color-text-primary: #f4f4f5;
   --color-text-secondary: #a1a1aa;
   --color-text-muted: #71717a;
   --color-text-subtle: #52525b;
-  
+
   --color-accent: #e4e4e7;
   --color-accent-muted: #a1a1aa;
   --color-accent-glow: rgba(228, 228, 231, 0.15);
-  
+
   --color-border: #27272a;
   --color-border-subtle: #1f1f23;
-  
-  /* Cinematic Accent - Warm highlight for special moments */
+
+  /* Primary Accent - Warm Gold (kept from original) */
   --color-highlight: #f59e0b;
   --color-highlight-muted: rgba(245, 158, 11, 0.2);
+
+  /* NEW: Extended Accent Palette - Jewel Tones */
+  /* Teal - for AI/ML content */
+  --color-accent-teal: #14b8a6;
+  --color-accent-teal-muted: rgba(20, 184, 166, 0.2);
+  --color-accent-teal-glow: rgba(20, 184, 166, 0.15);
+
+  /* Magenta/Pink - for side projects, creative work */
+  --color-accent-pink: #ec4899;
+  --color-accent-pink-muted: rgba(236, 72, 153, 0.2);
+  --color-accent-pink-glow: rgba(236, 72, 153, 0.15);
+
+  /* Purple - for VR/Unity content */
+  --color-accent-purple: #a855f7;
+  --color-accent-purple-muted: rgba(168, 85, 247, 0.2);
+  --color-accent-purple-glow: rgba(168, 85, 247, 0.15);
+
+  /* Emerald - for backend/systems work */
+  --color-accent-emerald: #10b981;
+  --color-accent-emerald-muted: rgba(16, 185, 129, 0.2);
+  --color-accent-emerald-glow: rgba(16, 185, 129, 0.15);
+
+  /* Coral/Orange - for CTAs, important actions */
+  --color-accent-coral: #f97316;
+  --color-accent-coral-muted: rgba(249, 115, 22, 0.2);
+  --color-accent-coral-glow: rgba(249, 115, 22, 0.15);
+
+  /* Multi-color gradient for hero (replaces single yellow) */
+  --gradient-hero: radial-gradient(ellipse at 50% 50%, 
+    rgba(245, 158, 11, 0.4) 0%, 
+    rgba(168, 85, 247, 0.2) 25%, 
+    rgba(20, 184, 166, 0.15) 50%, 
+    transparent 70%);
+
+  --gradient-hero-hover: radial-gradient(ellipse at 50% 50%, 
+    rgba(245, 158, 11, 0.5) 0%, 
+    rgba(236, 72, 153, 0.25) 30%, 
+    rgba(168, 85, 247, 0.2) 50%, 
+    transparent 70%);
   
   /* Typography Scale (fluid, clamp-based) */
   --font-size-xs: clamp(0.75rem, 0.7rem + 0.25vw, 0.8125rem);
@@ -485,4 +550,119 @@ html.lenis body {
   .grain::after {
     display: none;
   }
+}
+
+/* ============================================
+   TAG & CATEGORY COLORS
+   ============================================ */
+
+.tag-ai {
+  background: var(--color-accent-teal-muted);
+  color: var(--color-accent-teal);
+  border: 1px solid rgba(20, 184, 166, 0.3);
+}
+
+.tag-vr {
+  background: var(--color-accent-purple-muted);
+  color: var(--color-accent-purple);
+  border: 1px solid rgba(168, 85, 247, 0.3);
+}
+
+.tag-web {
+  background: var(--color-accent-coral-muted);
+  color: var(--color-accent-coral);
+  border: 1px solid rgba(249, 115, 22, 0.3);
+}
+
+.tag-backend {
+  background: var(--color-accent-emerald-muted);
+  color: var(--color-accent-emerald);
+  border: 1px solid rgba(16, 185, 129, 0.3);
+}
+
+.tag-creative {
+  background: var(--color-accent-pink-muted);
+  color: var(--color-accent-pink);
+  border: 1px solid rgba(236, 72, 153, 0.3);
+}
+
+.tag-default {
+  background: var(--color-highlight-muted);
+  color: var(--color-highlight);
+  border: 1px solid rgba(245, 158, 11, 0.3);
+}
+
+/* ============================================
+   HOVER COLOR TRANSITIONS
+   ============================================ */
+
+.hover-teal:hover {
+  color: var(--color-accent-teal);
+}
+
+.hover-pink:hover {
+  color: var(--color-accent-pink);
+}
+
+.hover-purple:hover {
+  color: var(--color-accent-purple);
+}
+
+.hover-emerald:hover {
+  color: var(--color-accent-emerald);
+}
+
+.hover-coral:hover {
+  color: var(--color-accent-coral);
+}
+
+/* Card hover tinted borders */
+.card-hover-teal:hover {
+  border-color: var(--color-accent-teal);
+  box-shadow: 0 0 20px var(--color-accent-teal-glow);
+}
+
+.card-hover-pink:hover {
+  border-color: var(--color-accent-pink);
+  box-shadow: 0 0 20px var(--color-accent-pink-glow);
+}
+
+.card-hover-purple:hover {
+  border-color: var(--color-accent-purple);
+  box-shadow: 0 0 20px var(--color-accent-purple-glow);
+}
+
+.card-hover-emerald:hover {
+  border-color: var(--color-accent-emerald);
+  box-shadow: 0 0 20px var(--color-accent-emerald-glow);
+}
+
+/* ============================================
+   SECTION BACKGROUND VARIANTS
+   ============================================ */
+
+.bg-tinted-navy {
+  background-color: var(--color-bg-navy);
+}
+
+.bg-tinted-wine {
+  background-color: var(--color-bg-wine);
+}
+
+.bg-tinted-forest {
+  background-color: var(--color-bg-forest);
+}
+
+/* Gradient background for hero section */
+.bg-hero-gradient::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background: var(--gradient-hero);
+  pointer-events: none;
+  transition: background var(--duration-slow) var(--ease-smooth);
+}
+
+.bg-hero-gradient:hover::before {
+  background: var(--gradient-hero-hover);
 }
