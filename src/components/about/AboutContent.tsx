@@ -42,20 +42,22 @@ export function AboutContent() {
         </div>
         <div className="space-y-6 max-w-2xl">
           <p className="text-body-lg text-[var(--color-text-secondary)] leading-relaxed">
-            I fell in love with programming when I realized I could build things that 
-            solve real problems. What started as tinkering with small scripts evolved 
-            into a deep passion for crafting software that&apos;s both powerful and delightful to use.
+            I&apos;m currently pursuing my Master&apos;s in Computer Science at NC State University (4.0 GPA), 
+            after completing my B.E. in Computer Science from Anna University, Chennai. My journey 
+            into software engineering started with a curiosity about how things work—which quickly 
+            evolved into a passion for building systems that solve real problems at scale.
           </p>
           <p className="text-body-lg text-[var(--color-text-secondary)] leading-relaxed">
-            My journey has taken me through diverse domains—from building inventory systems 
-            at Amazon to creating therapeutic VR environments for university research. Each 
-            experience has shaped how I approach problems: with curiosity, rigor, and a 
-            healthy dose of creativity.
+            This past summer, I interned at AWS on the EC2 ZIM Core Team, where I designed a 
+            GraphQL-based system that reduced payload sizes by 80% and achieved sub-second latency. 
+            I&apos;m also working on a $1.4M NSF-funded VR research project at NC State, building 
+            educational environments in Unity3D for Meta for Education.
           </p>
           <p className="text-body-lg text-[var(--color-text-secondary)] leading-relaxed">
-            Today, I&apos;m particularly excited about the intersection of AI and human creativity. 
-            I believe the best tools amplify human capabilities rather than replace them, and 
-            I&apos;m exploring how to build software that embodies this philosophy.
+            Beyond tech, I spent two years as President of Theatron, the official theater club 
+            at Anna University—leading productions, organizing 20+ workshops, and securing $3,000 
+            in funding. This experience shaped how I approach collaboration, communication, and 
+            creative problem-solving.
           </p>
         </div>
       </motion.section>
@@ -130,11 +132,11 @@ export function AboutContent() {
         </div>
         <div className="flex flex-wrap gap-3">
           {[
-            "AI-augmented development workflows",
-            "Spatial computing & XR",
-            "Design engineering",
-            "Developer experience",
-            "Creative coding",
+            "GraphQL & Distributed Systems",
+            "VR/XR Development",
+            "Deep Learning for Medical Imaging",
+            "AWS Cloud Architecture",
+            "Full-Stack Development",
           ].map((topic) => (
             <span
               key={topic}

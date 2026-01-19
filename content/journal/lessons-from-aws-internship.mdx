@@ -1,0 +1,93 @@
+---
+title: "What My AWS Internship Taught Me About Building at Scale"
+description: "Reflections on my SDE internship at AWS: designing GraphQL systems, working in distributed microservices, and lessons for building production-grade software."
+date: "2025-09-20"
+tags: ["career", "learning", "aws", "engineering"]
+draft: false
+---
+
+Three months at AWS felt like a year of learning compressed into a summer. Working on the EC2 ZIM Core Team in Arlington, VA, I got to design and build systems that would be used at AWS scale. As I wrap up my internship, here are the lessons I'll carry forward.
+
+## The Surprises
+
+### 1. The Scale Is Real
+
+I expected large systems. I didn't expect every decision to have scale implications. When you're building for AWS, even a small inefficiency can multiply into significant problems.
+
+**The lesson**: Design for scale from day one. The extra time spent on optimization upfront pays off exponentially.
+
+### 2. GraphQL Changes Everything
+
+My main project was building a GraphQL-based proof of concept for querying EC2 network interface data. Moving from REST to GraphQL wasn't just a technical change—it fundamentally shifted how we thought about APIs.
+
+```graphql
+# Instead of getting everything and filtering client-side
+# Clients could request exactly what they needed
+query {
+  networkInterface(id: "eni-12345") {
+    privateIpAddress
+    subnetId
+    securityGroups {
+      groupId
+    }
+  }
+}
+```
+
+The result: **80% reduction in payload size** and sub-second latency for complex queries.
+
+**The lesson**: The right abstraction can dramatically simplify problems. GraphQL wasn't just "better REST"—it was a different way of thinking about data access.
+
+### 3. Performance Benchmarking Is Non-Negotiable
+
+One of my key contributions was benchmarking resolver performance under high concurrency. We sustained **330+ requests/sec with zero data loss**—but getting there required systematic testing and optimization.
+
+**The lesson**: Don't guess about performance. Measure it, prove it, document it.
+
+## The Technical Challenges
+
+### Building the Dynamic SQL Query Builder
+
+The N+1 query problem is a classic GraphQL challenge. My solution was a dynamic SQL query builder that:
+- Analyzed the incoming GraphQL query
+- Generated optimized SQL with proper joins
+- Implemented caching strategies for repeated patterns
+
+Result: **25% improvement in database throughput**.
+
+### Working Within the AWS Coral Framework
+
+AWS has its own internal frameworks and conventions. Learning to build within the Coral framework while maintaining code that could integrate with existing distributed microservices was a constant balance.
+
+<Callout type="tip" title="Pro tip">
+When joining a new team, spend the first week just reading code. Understanding existing patterns will save you from reinventing wheels—or worse, building incompatible ones.
+</Callout>
+
+## What I'd Tell Past Me
+
+1. **Documentation is a feature**. The systems I built will outlive my time on the team. Good documentation ensures they remain maintainable.
+
+2. **Ask questions early**. I wasted time on problems that senior engineers could have solved in minutes. There's no prize for struggling alone.
+
+3. **Container everything**. Docker wasn't just for deployment—it was essential for consistent development and testing across the team.
+
+4. **The design is the hard part**. Writing code is straightforward once you've designed the right solution. Most of my time was spent in design docs and architecture discussions.
+
+5. **Celebrate the wins**. Getting the design adopted for production integration was a highlight of my career so far. Take time to appreciate these moments.
+
+## Looking Forward
+
+I'm heading back to NC State with a clearer understanding of what "production-grade software" really means. The technical skills matter, but equally important are:
+- Systematic thinking about scale
+- Clear communication in design documents
+- Rigorous testing and benchmarking
+- Building for maintainability, not just functionality
+
+To anyone preparing for their first big tech internship: you're probably more ready than you think. The fundamentals transfer—algorithms, data structures, system design. What you'll learn is how to apply them at scale.
+
+Good luck.
+
+---
+
+*Questions about AWS internships or distributed systems? Feel free to reach out—I'm happy to share more specific advice.*
+

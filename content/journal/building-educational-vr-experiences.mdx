@@ -1,0 +1,113 @@
+---
+title: "Building Educational VR: Lessons from an NSF Research Project"
+description: "Insights from developing VR environments for a $1.4M NSF-funded project at NC State, including challenges with Unity optimization and designing for educational impact."
+date: "2025-06-15"
+tags: ["vr", "unity", "research", "learning"]
+draft: false
+---
+
+When I joined the NSF-funded research project at NC State as a Student VR Developer, I thought I knew what building VR meant. After six months of developing educational environments in Unity3D, I've learned that VR for education is a completely different challenge than VR for entertainment.
+
+## The Project: Visualizing Exponential Scaling
+
+Our goal is ambitious: help students understand exponential scaling—a concept that's notoriously difficult to grasp intuitively—through immersive spatial visualization. This is part of a $1.4M NSF-funded project targeting eventual release through Meta for Education.
+
+The core challenge: **How do you make abstract mathematical concepts feel real?**
+
+## Why VR for Education?
+
+Traditional teaching methods struggle with exponential concepts. A graph showing 2^n growing faster than n^2 is mathematically correct but doesn't *feel* real. VR changes this by:
+
+1. **Spatial awareness**: Standing next to a growing structure makes scale visceral
+2. **Active exploration**: Students can walk around, zoom in, manipulate
+3. **Memorable experiences**: Embodied learning sticks longer than passive viewing
+
+<Callout type="tip" title="Key insight">
+The most effective educational VR isn't about flashy graphics—it's about creating moments of genuine understanding that wouldn't be possible in 2D.
+</Callout>
+
+## Technical Deep Dive
+
+### Procedural Generation for Dynamic Content
+
+Static scenes wouldn't work for our use case. We needed environments that could demonstrate exponential growth dynamically. This meant procedural generation:
+
+```csharp
+// Simplified example of our growth visualization
+public IEnumerator VisualizeExponentialGrowth(int n) {
+    for (int i = 0; i <= n; i++) {
+        int count = (int)Mathf.Pow(2, i);
+        yield return SpawnObjects(count);
+        yield return new WaitForSeconds(pauseDuration);
+    }
+}
+```
+
+The real complexity is in making this performant while maintaining visual clarity.
+
+### OpenXR for Cross-Platform Support
+
+We chose OpenXR frameworks for Meta Quest compatibility. This decision had tradeoffs:
+
+**Pros:**
+- Cross-platform compatibility
+- Future-proof against hardware changes
+- Strong community support
+
+**Cons:**
+- Some platform-specific features require workarounds
+- Debugging can be trickier than native SDKs
+
+### Performance Optimization
+
+Quest standalone mode is *demanding*. Our targets:
+- 72 FPS minimum (90 FPS preferred)
+- Under 50ms frame times
+- Thermal throttling management
+
+Tools that saved us:
+- **Unity Profiler**: Essential for identifying bottlenecks
+- **Frame Debugger**: Understanding exactly what's being rendered
+- **Memory Profiler**: VR headsets have limited RAM
+
+## The Unexpected Challenges
+
+### Git Across Three Branches
+
+Managing version control across three parallel development branches (main, experimental, demo) was more challenging than expected. We established strict conventions:
+
+- Feature branches merge to experimental first
+- Only tested features move to main
+- Demo branch gets cherry-picked stable features
+
+### Designing for VR Novices
+
+Our target users aren't gamers—they're students and educators. This meant:
+- Minimal motion to prevent VR sickness
+- Intuitive controls (no complex button combinations)
+- Clear visual affordances for interaction
+
+### Research Requirements vs. Development Speed
+
+Academic research has different timelines than software development. Balancing rigorous methodology with iterative development required constant communication with the research team.
+
+## What I've Learned
+
+1. **Performance is a feature**: In VR, dropped frames aren't just annoying—they cause physical discomfort.
+
+2. **User testing is essential**: What seems obvious to developers is often confusing to users. Test early, test often.
+
+3. **Documentation scales**: As the codebase grew, time invested in documentation paid dividends in reduced debugging time.
+
+4. **Collaboration is key**: Working with educators helped us avoid building technically impressive but pedagogically useless features.
+
+## Looking Forward
+
+The project is targeting eventual public release through Meta for Education. Knowing that this work could help students worldwide understand difficult concepts better is incredibly motivating.
+
+For anyone interested in educational VR: it's a field with massive potential. The intersection of immersive technology and learning science is still largely unexplored. There's meaningful work to be done.
+
+---
+
+*Working on VR for education or interested in the technical details? Connect with me on [LinkedIn](https://linkedin.com/in/ashwinramesh22)—I love discussing this space.*
+

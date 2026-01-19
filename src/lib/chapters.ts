@@ -28,71 +28,176 @@ export interface Chapter {
 // Can easily be migrated to MDX later if needed
 export const chapters: Chapter[] = [
   {
-    slug: "amazon-inventory-system",
-    title: "Inventory Intelligence",
-    subtitle: "Amazon SDE Internship",
+    slug: "aws-ec2-graphql",
+    title: "EC2 Network Interface Query System",
+    subtitle: "AWS SDE Internship",
     description:
-      "Built a real-time inventory forecasting system that reduced overstock by 12% across North American fulfillment centers.",
+      "Designed and built a GraphQL-based proof of concept for querying EC2 network interface data, reducing payload size by 80% and achieving sub-second latency.",
     date: "2025-08",
-    tags: ["backend", "full-stack", "ai", "typescript"],
+    tags: ["backend", "graphql", "aws", "full-stack"],
     featured: true,
     context:
-      "During my SDE internship at Amazon, I joined the Fulfillment Technology team working on inventory optimization. The challenge: predict demand spikes and prevent both overstock and stockouts across thousands of SKUs.",
+      "During my SDE internship at AWS on the EC2 ZIM Core Team in Arlington, VA, I worked on improving how teams query EC2 network interface data. The existing REST-based approach was inefficient, returning large payloads when clients often needed only a subset of fields.",
     whatIBuilt:
-      "A forecasting microservice that ingested real-time sales data, seasonal patterns, and external signals (weather, events) to generate 7-day inventory recommendations. The system integrated with existing warehouse management tools via a clean REST API.",
+      "A GraphQL-based proof of concept that enables selective field retrieval for EC2 network interface data. The service includes a dynamic SQL query builder with optimized joins, caching strategies, and was containerized with Docker via RDE. Collaborated with the cZIM team for validation and integration.",
     keyDecisions: [
-      "Chose TypeScript + Node.js for rapid iteration and strong typing",
-      "Implemented a sliding window algorithm for trend detection vs. heavy ML models",
-      "Built a feature flag system to gradually roll out predictions by category",
-      "Designed the API to be backwards-compatible with legacy systems",
+      "Chose GraphQL over REST for flexible, client-driven queries",
+      "Built dynamic SQL query builder eliminating N+1 query issues",
+      "Implemented caching strategies to improve database throughput by 25%",
+      "Containerized the service with Docker via RDE for easy deployment",
+      "Designed within AWS Coral framework for distributed microservice compatibility",
     ],
     challenges: [
-      "Handling data inconsistencies from multiple warehouse sources",
-      "Balancing prediction accuracy with computational cost at scale",
-      "Navigating a large codebase with minimal documentation",
+      "Ensuring system reliability and maintainability at AWS scale",
+      "Benchmarking resolver performance under high concurrency",
+      "Integrating with existing AWS infrastructure and teams",
     ],
     outcomes: [
-      "12% reduction in overstock for pilot categories",
-      "System processed 50K+ SKU predictions daily",
-      "Received offer for full-time return",
+      "80% reduction in payload size for complex queries",
+      "Sub-second latency achieved for production-scale queries",
+      "Sustained 330+ requests/sec with zero data loss in benchmarks",
+      "Design adopted for large-scale production integration",
     ],
-    techStack: ["TypeScript", "Node.js", "AWS Lambda", "DynamoDB", "CloudWatch", "React"],
+    techStack: ["GraphQL", "Docker", "AWS Coral", "SQL", "Java"],
     links: {
-      // Amazon internal - no public links
+      // AWS internal - no public links
     },
   },
   {
-    slug: "vr-therapy-environment",
-    title: "Calm Spaces",
-    subtitle: "VR Therapeutic Environment",
+    slug: "nsf-vr-exponential-scaling",
+    title: "VR Exponential Scaling Visualization",
+    subtitle: "NSF-Funded Research Project",
     description:
-      "Designed and built an immersive VR environment for anxiety therapy, used in a university research study with 40+ participants.",
-    date: "2025-03",
-    tags: ["vr", "unity", "design", "frontend"],
+      "Developing VR environments in Unity3D for a $1.4M NSF-funded project, visualizing exponential scaling concepts for Meta for Education.",
+    date: "2025-06",
+    tags: ["vr", "unity", "design", "research"],
     featured: true,
     context:
-      "Collaborated with the Psychology department to create a VR tool for exposure therapy research. The goal was to create calming, controllable environments where therapists could guide patients through anxiety-reducing exercises.",
+      "Working as a Student VR Developer at NC State University on an NSF-funded research project. The goal is to create immersive VR environments that help students understand complex mathematical concepts like exponential scaling through spatial visualization.",
     whatIBuilt:
-      "A Unity-based VR application featuring three procedurally-generated nature environments (forest, beach, mountain). Included biometric integration for real-time stress monitoring and therapist controls for adjusting environmental intensity.",
+      "VR environments in Unity3D featuring procedural generation and OpenXR framework integration. The project targets Meta Quest devices and is designed for educational deployment in partnership with Meta for Education.",
     keyDecisions: [
-      "Used procedural generation for infinite variety without asset bloat",
-      "Prioritized 90fps performance to prevent VR sickness",
-      "Built a companion tablet app for therapist control during sessions",
-      "Implemented gradual environment transitions to avoid startling users",
+      "Integrated OpenXR frameworks for cross-platform VR compatibility",
+      "Used procedural generation for dynamic, scalable environments",
+      "Implemented performance optimizations using Unity Profiler",
+      "Managed Git version control across three project branches",
     ],
     challenges: [
-      "Optimizing complex shaders for Quest 2 standalone mode",
-      "Syncing biometric data with environmental changes in real-time",
-      "Designing for users with varying VR experience levels",
+      "Visualizing abstract mathematical concepts in intuitive 3D space",
+      "Optimizing for standalone Meta Quest performance",
+      "Debugging across multiple development branches",
+      "Coordinating with research team on educational requirements",
     ],
     outcomes: [
-      "Used in published research study with 40+ participants",
-      "92% of participants reported reduced anxiety post-session",
-      "Open-sourced the procedural nature system",
+      "Contributing to $1.4M NSF-funded research project",
+      "Targeting public release through Meta for Education",
+      "Building foundation for educational VR experiences",
     ],
-    techStack: ["Unity", "C#", "Oculus SDK", "WebSocket", "React Native"],
+    techStack: ["Unity3D", "C#", "OpenXR", "Meta Quest SDK", "Git"],
     links: {
-      github: "https://github.com/ashwinrk/calm-spaces",
+      // Research project - release pending
+    },
+  },
+  {
+    slug: "memory-driven-transformer",
+    title: "Memory-Driven Transformer for Radiology",
+    subtitle: "Medical Imaging Deep Learning",
+    description:
+      "Led development of a system to generate clinically consistent radiology reports using transformer architecture with relational memory and PubMed BERT integration.",
+    date: "2025-04",
+    tags: ["ai", "ml", "deep-learning", "python"],
+    featured: true,
+    context:
+      "Medical imaging generates massive amounts of data that radiologists must interpret and document. This project aimed to automate the generation of clinically consistent radiology reports from medical images using state-of-the-art deep learning.",
+    whatIBuilt:
+      "A transformer-based system with a novel relational memory module that maintains context across image sequences. Integrated a pre-trained PubMed BERT model to identify abnormalities and generate medically accurate descriptions. Trained using AWS SageMaker's distributed capabilities.",
+    keyDecisions: [
+      "Introduced relational memory module for maintaining clinical context",
+      "Integrated pre-trained PubMed BERT for domain-specific language understanding",
+      "Leveraged AWS SageMaker for distributed training on large datasets",
+      "Designed for processing larger datasets of images and reports",
+    ],
+    challenges: [
+      "Ensuring clinical accuracy in generated reports",
+      "Handling large-scale medical imaging datasets",
+      "Balancing model complexity with inference speed",
+    ],
+    outcomes: [
+      "Achieved superior performance compared to baseline models",
+      "Successfully processed larger dataset of images and reports",
+      "Demonstrated practical application of transformers in medical domain",
+    ],
+    techStack: ["Python", "PyTorch", "AWS SageMaker", "BERT", "Transformers"],
+    links: {
+      github: "https://github.com/ashwinramesh022/memory-transformer-radiology",
+    },
+  },
+  {
+    slug: "semiconductor-anomaly-detection",
+    title: "Circuit Anomaly Detection System",
+    subtitle: "Semiconductor Research Corporation",
+    description:
+      "Built outlier detection algorithms on 250+ datasets for analog and mixed-signal circuits, improving anomaly detection accuracy by 12%.",
+    date: "2024-03",
+    tags: ["ml", "python", "backend", "research"],
+    featured: false,
+    context:
+      "Summer internship at Semiconductor Research Corporation in Chennai, funded by Texas Instruments. The project focused on improving quality assurance for analog and mixed-signal circuits through automated anomaly detection.",
+    whatIBuilt:
+      "Implemented multiple outlier detection algorithms including One-class SVM, K-means, and DBSCAN on 250+ datasets, each containing 100-200 features. Used clustering and predictive modeling techniques to assess performance for high-sensitivity circuits.",
+    keyDecisions: [
+      "Compared multiple algorithms (One-class SVM, K-means, DBSCAN) for best fit",
+      "Designed feature engineering pipeline for high-dimensional circuit data",
+      "Implemented clustering for pattern recognition in circuit behavior",
+      "Built predictive models for performance assessment",
+    ],
+    challenges: [
+      "Handling high-dimensional feature spaces (100-200 features per dataset)",
+      "Processing 250+ diverse datasets with varying characteristics",
+      "Balancing detection accuracy with false positive rates",
+    ],
+    outcomes: [
+      "12% improvement in anomaly detection accuracy",
+      "Accuracy score increased from 80% to 87%",
+      "Results applied to Texas Instruments circuit quality assurance",
+    ],
+    techStack: ["Python", "Scikit-learn", "Pandas", "NumPy", "Matplotlib"],
+    links: {
+      // Internal research - no public links
+    },
+  },
+  {
+    slug: "eion-mobile-app",
+    title: "Real-time Analytics Mobile App",
+    subtitle: "EION Inc. Internship",
+    description:
+      "Developed a mobile application for Android using React and Node.js with real-time Firebase integration, improving app throughput by 12%.",
+    date: "2023-09",
+    tags: ["frontend", "react", "nodejs", "full-stack"],
+    featured: false,
+    context:
+      "Software Developer Internship at EION Inc. in Chennai. The project involved building a mobile application to provide real-time analytics and data visualization for the company's platform.",
+    whatIBuilt:
+      "A mobile application for Android using React and Node.js, featuring real-time analytics dashboards and data synchronization. Integrated Google Firebase for real-time database management and accelerated data retrieval.",
+    keyDecisions: [
+      "Chose React Native for cross-platform development efficiency",
+      "Implemented Firebase for real-time data synchronization",
+      "Used Android Studio for platform-specific debugging",
+      "Leveraged Git for streamlined version control",
+    ],
+    challenges: [
+      "Ensuring smooth real-time data updates across devices",
+      "Optimizing app performance for various Android versions",
+      "Managing state consistency with real-time backend",
+    ],
+    outcomes: [
+      "12% improvement in app throughput",
+      "15% acceleration in data retrieval through Firebase integration",
+      "50+ active users during beta release",
+    ],
+    techStack: ["React", "Node.js", "Firebase", "Android Studio", "Git"],
+    links: {
+      // Company internal - no public links
     },
   },
 ];
