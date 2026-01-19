@@ -41,20 +41,29 @@ export function CursorFollower() {
   const rafRef = useRef<number | null>(null);
 
   useEffect(() => {
-    // Check for touch device
+    // Check for touch-only device (no mouse/trackpad)
     const checkTouch = () => {
-      const hasCoarsePointer = window.matchMedia("(pointer: coarse)").matches;
       const hasFinePointer = window.matchMedia("(pointer: fine)").matches;
-      setIsTouch(hasCoarsePointer && !hasFinePointer);
+      const hasHoverCapability = window.matchMedia("(hover: hover)").matches;
+      
+      // Only disable cursor on devices with NO fine pointer AND NO hover capability
+      // This ensures touchscreen laptops and desktops with touch monitors still get the cursor
+      setIsTouch(!hasFinePointer && !hasHoverCapability);
     };
     
     checkTouch();
     
-    // Also listen for pointer type changes
-    const mediaQuery = window.matchMedia("(pointer: fine)");
-    mediaQuery.addEventListener("change", checkTouch);
+    // Listen for pointer type changes (e.g., connecting/disconnecting mouse)
+    const finePointerQuery = window.matchMedia("(pointer: fine)");
+    const hoverQuery = window.matchMedia("(hover: hover)");
     
-    return () => mediaQuery.removeEventListener("change", checkTouch);
+    finePointerQuery.addEventListener("change", checkTouch);
+    hoverQuery.addEventListener("change", checkTouch);
+    
+    return () => {
+      finePointerQuery.removeEventListener("change", checkTouch);
+      hoverQuery.removeEventListener("change", checkTouch);
+    };
   }, []);
 
   useEffect(() => {
