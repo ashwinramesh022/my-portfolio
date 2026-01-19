@@ -4,7 +4,7 @@ import Link from "next/link";
 import { motion, useScroll, useTransform } from "framer-motion";
 import { useRef } from "react";
 import { Chapter } from "@/lib/chapters";
-import { formatDateShort } from "@/lib/utils";
+import { formatDateShort, getCardHoverClass } from "@/lib/utils";
 import { Tag } from "@/components/ui";
 
 interface FeaturedChaptersProps {
@@ -116,18 +116,45 @@ function ChapterCard({ chapter, index }: { chapter: Chapter; index: number }) {
   const y = useTransform(scrollYProgress, [0, 0.3], [60, 0]);
   const scale = useTransform(scrollYProgress, [0, 0.3], [0.97, 1]);
 
+  // Get accent color for this project based on tags
+  const getAccentColor = () => {
+    const tags = chapter.tags.map(t => t.toLowerCase());
+    if (tags.some(t => t.includes("ai") || t.includes("ml"))) return "rgba(20, 184, 166, 0.04)"; // teal
+    if (tags.some(t => t.includes("vr") || t.includes("unity"))) return "rgba(168, 85, 247, 0.04)"; // purple
+    if (tags.some(t => t.includes("backend") || t.includes("api") || t.includes("aws"))) return "rgba(16, 185, 129, 0.04)"; // emerald
+    if (tags.some(t => t.includes("web") || t.includes("frontend") || t.includes("react"))) return "rgba(249, 115, 22, 0.04)"; // coral
+    if (tags.some(t => t.includes("design") || t.includes("creative"))) return "rgba(236, 72, 153, 0.04)"; // pink
+    return "rgba(245, 158, 11, 0.04)"; // default gold
+  };
+
+  const getAccentColorVar = () => {
+    const tags = chapter.tags.map(t => t.toLowerCase());
+    if (tags.some(t => t.includes("ai") || t.includes("ml"))) return "var(--color-accent-teal)";
+    if (tags.some(t => t.includes("vr") || t.includes("unity"))) return "var(--color-accent-purple)";
+    if (tags.some(t => t.includes("backend") || t.includes("api") || t.includes("aws"))) return "var(--color-accent-emerald)";
+    if (tags.some(t => t.includes("web") || t.includes("frontend") || t.includes("react"))) return "var(--color-accent-coral)";
+    if (tags.some(t => t.includes("design") || t.includes("creative"))) return "var(--color-accent-pink)";
+    return "var(--color-highlight)"; // default gold
+  };
+
+  const cardHoverClass = getCardHoverClass(chapter.tags);
+  const accentColor = getAccentColorVar();
+
   return (
     <motion.article
       ref={cardRef}
       style={{ opacity, y, scale }}
     >
       <Link href={`/chapters/${chapter.slug}`} className="group block relative" data-cursor="project" data-cursor-label="Explore">
-        <div className="relative bg-[var(--color-bg-elevated)] border border-[var(--color-border-subtle)] rounded-2xl p-8 md:p-10 lg:p-12 overflow-hidden transition-all duration-500 hover:border-[var(--color-border)] group-hover:bg-[var(--color-bg-surface)]">
+        <div 
+          className={`relative bg-[var(--color-bg-elevated)] border border-[var(--color-border-subtle)] rounded-2xl p-8 md:p-10 lg:p-12 overflow-hidden transition-all duration-500 hover:border-[var(--color-border)] group-hover:bg-[var(--color-bg-surface)] ${cardHoverClass}`}
+          style={{ "--chapter-accent": accentColor } as React.CSSProperties}
+        >
           {/* Hover gradient spotlight */}
           <div 
             className="absolute inset-0 opacity-0 group-hover:opacity-100 transition-opacity duration-500 pointer-events-none"
             style={{
-              background: "radial-gradient(800px circle at var(--mouse-x, 50%) var(--mouse-y, 50%), rgba(245, 158, 11, 0.04), transparent 40%)",
+              background: `radial-gradient(800px circle at var(--mouse-x, 50%) var(--mouse-y, 50%), ${getAccentColor()}, transparent 40%)`,
             }}
           />
 
@@ -136,7 +163,7 @@ function ChapterCard({ chapter, index }: { chapter: Chapter; index: number }) {
             <div className="flex-1 max-w-2xl">
               {/* Chapter Number + Meta */}
               <div className="flex items-center gap-4 mb-6">
-                <span className="flex items-center justify-center w-10 h-10 rounded-full bg-[var(--color-bg-surface)] border border-[var(--color-border-subtle)] text-caption text-[var(--color-text-muted)] font-mono group-hover:border-[var(--color-highlight)] group-hover:text-[var(--color-highlight)] transition-colors duration-300">
+                <span className="flex items-center justify-center w-10 h-10 rounded-full bg-[var(--color-bg-surface)] border border-[var(--color-border-subtle)] text-caption text-[var(--color-text-muted)] font-mono transition-colors duration-300 group-hover:border-[var(--chapter-accent)] group-hover:text-[var(--chapter-accent)]">
                   {String(index + 1).padStart(2, "0")}
                 </span>
                 <div className="flex items-center gap-3 text-caption text-[var(--color-text-subtle)]">
@@ -147,7 +174,7 @@ function ChapterCard({ chapter, index }: { chapter: Chapter; index: number }) {
               </div>
 
               {/* Title */}
-              <h3 className="text-heading-3 text-[var(--color-text-primary)] mb-4 transition-colors duration-300 group-hover:text-[var(--color-highlight)]">
+              <h3 className="text-heading-3 text-[var(--color-text-primary)] mb-4 transition-colors duration-300 group-hover:text-[var(--chapter-accent)]">
                 {chapter.title}
               </h3>
 
@@ -165,7 +192,7 @@ function ChapterCard({ chapter, index }: { chapter: Chapter; index: number }) {
             </div>
 
             {/* Arrow indicator */}
-            <div className="hidden lg:flex items-center justify-center w-14 h-14 rounded-full border border-[var(--color-border-subtle)] text-[var(--color-text-muted)] group-hover:border-[var(--color-highlight)] group-hover:text-[var(--color-highlight)] group-hover:bg-[var(--color-highlight-muted)] transition-all duration-300 self-center">
+            <div className="hidden lg:flex items-center justify-center w-14 h-14 rounded-full border border-[var(--color-border-subtle)] text-[var(--color-text-muted)] group-hover:border-[var(--chapter-accent)] group-hover:text-[var(--chapter-accent)] transition-all duration-300 self-center" style={{ "--chapter-accent": accentColor } as React.CSSProperties}>
               <svg
                 width="24"
                 height="24"

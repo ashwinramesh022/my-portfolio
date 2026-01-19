@@ -78,14 +78,11 @@ export function HeroSection() {
       ref={scope}
       className="relative min-h-[90vh] flex items-center overflow-hidden"
     >
-      {/* Subtle gradient background - atmospheric, not distracting */}
+      {/* Multi-color gradient background - jewel-toned palette */}
       <div 
-        className="absolute inset-0 pointer-events-none"
+        className="absolute inset-0 pointer-events-none transition-opacity duration-500"
         style={{
-          background: `
-            radial-gradient(ellipse 100% 70% at 50% -20%, rgba(255, 255, 255, 0.02), transparent),
-            radial-gradient(ellipse 50% 50% at 0% 100%, rgba(120, 119, 198, 0.03), transparent)
-          `,
+          background: "var(--gradient-hero)",
         }}
       />
       
